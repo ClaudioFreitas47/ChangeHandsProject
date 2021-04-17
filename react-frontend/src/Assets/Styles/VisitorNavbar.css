@@ -1,0 +1,23 @@
+/*Css for visitor nav*/
+.navbar {
+    background-color: #EE6C87;
+    height: 80px;
+    position: fixed;
+    width:100%;
+    z-index: 20;
+}
+
+.navbar-light .navbar-brand{
+font-size: 23px;
+margin-left: 20px;
+text-transform: uppercase;
+color: #ffffff;
+font-weight: 600;
+
+}
+
+.navbar-light .navbar-brand:hover {
+   color: #cacaca;
+}
+
+
