@@ -1,0 +1,144 @@
+import React, { Component } from "react";
+import { Container, Row, Col, Table, Image } from "react-bootstrap";
+import AdminNavBar from "./Nav/AdminNavbar";
+import axios from "axios";
+import { apiRootUrl, apiRootFileUrl } from "./../../appConfig";
+import notification from "./../../Alerts"
+
+
+import {
+FaTrashAlt
+} from "react-icons/fa";
+
+export default class AdminHomePage extends Component {
+  
+  //sets the users array to empty
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: [],
+    };
+    //handles the deletion of the user
+    this.handleDeleteUser = this.handleDeleteUser.bind(this);
+  }
+  //stores the user ID in a variable
+  handleDeleteUser = (user) => (e) => {
+    e.preventDefault();
+    const data = {
+      id: user._id,
+    };
+
+    //API post of user ID for deletion, requires admin auth
+    axios.post(apiRootUrl + "/admin/users/deleteUser", data, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token_admin"),
+      },
+    })
+      //success message if user is deleted
+      .then((res) => {
+    
+        this.getAllUsers();
+        notification("success", "Success", res.data.message);
+      })
+
+      //error message if any errors occur 
+      .catch((err) => {
+          notification("error", "Error", err.response.data.error)
+      });
+  };
+  //API Gets all the users to display within the table
+  getAllUsers() {
+    axios.get(apiRootUrl + "/admin/users/getAllUsers", {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token_admin"),
+      },
+    })
+    //success responds with user data
+      .then((res) => {
+
+        this.setState({
+          users: res.data.data,
+        });
+      })
+      //displays any errors if they occur
+      .catch((err) => {
+        notification("error", "Error", err.response.data.error)
+      });
+  }
+  componentDidMount() {
+    this.getAllUsers();
+  }
+  render() {
+    return (
+      <>
+        <AdminNavBar />
+        <div className="table-top">
+          <h2>User Profiles</h2>
+        </div>
+        <Container>
+          <Row>
+            <Col lg={3} md={3} xs={3}></Col>
+            <Col lg={8} md={8} xs={8}>
+              <Table responsive='sm' striped hover>
+                <thead className="table-head">
+                  <tr>
+                    <th>Profile</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Execute</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.state.users.length > 0 ? (
+                    this.state.users.map((user) => {
+                      return (
+                        //maps out all user data within a table
+                        <tr key={user._id}>
+                          <td>
+                            <Image
+                              src={
+                                user.profile === null
+                                  ? `${apiRootFileUrl}/standard-profile/standard-profile.png`
+                                  : `${apiRootFileUrl}/${user.profile}`
+                              }
+                              roundedCircle
+                              width="75"
+                              height="75"
+                              
+                            />
+                          </td>
+                          <td>{user.firstName}</td>
+                          <td>{user.lastName}</td>
+                          <td>{user.username}</td>
+                          <td>{user.email}</td>
+                          <td>
+
+                          <button className="btn-delete"
+                              onClick={this.handleDeleteUser(user)}
+                            >
+                              <FaTrashAlt className="icons"/>
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    })
+                  ) : (
+                    //displays empty table if users dont exist
+                    <tr>
+                    
+                      <td colSpan='7'>No Users Available</td>
+                    </tr>
+                  )}
+                </tbody>
+              </Table>
+            </Col>
+          </Row>
+        </Container>
+        <div className="bottom"/>
+      </>
+    );
+  }
+}
