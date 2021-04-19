@@ -1,0 +1,34 @@
+/*Css for profile*/
+
+.profile-picture{
+    width: 80%;
+}
+
+.border-about{
+    border-bottom: 1px solid #7574744f;
+}
+.border-items{
+    border-top: 1px solid #7574744f;
+}
+
+.about-info {
+    margin-left: 40px;
+}
+
+.profile-icon {
+    padding-bottom: 3px;
+    margin-right: 10px;
+    color: #16191b;
+
+}
+.profile-msg a {
+    text-decoration: none;
+    color: #16191b;
+}
+.profile-msg a:hover{
+   color: #353d42;
+}
+
+.profile-shadow{
+    box-shadow:0px 0px 26px 6px #00000024;
+}

@@ -1,0 +1,155 @@
+/*Css for chat*/
+.chat-container {
+    padding-top: 200px;
+  }
+  .chat-user-img {
+    max-width: 100%;
+  }
+  .chat-active {
+    background: #f8f8f8;
+    float: left;
+    overflow: hidden;
+    width: 30%;
+    border-right: 1px solid #8d8d8d;
+  }
+  .chat-box{
+    max-height: 495px;
+    border: 1px solid #8d8d8d;
+    clear: both;
+    overflow: hidden;
+  }
+  
+  .chat-heading {
+    padding: 10px 29px 10px 20px;
+    overflow: hidden;
+    border-bottom: 1px solid #8d8d8d;
+  }
+  
+  .chat-heading h4 {
+    color: #4b93ff;
+    font-size: 21px;
+    margin: auto;
+    float: left;
+    width: 40%;
+  }
+  
+  .chat-users-box h5 {
+    font-size: 15px;
+    color: #000000;
+    margin: 0 0 8px 0;
+  }
+  .chat-users-box h5 span {
+    font-size: 13px;
+    float: right;
+  }
+  .chat-users-box p {
+    font-size: 14px;
+    color: #000000;
+    margin: auto;
+  }
+  .chat-users-box {
+    float: left;
+    padding: 0 0 0 15px;
+    width: 88%;
+  }
+  
+  .chat-users-box h5{
+  color: #b95166;
+  }
+  
+  
+  .chat-active-users {
+    overflow: hidden;
+    clear: both;
+    
+  }
+  .chat-active-list {
+    border-bottom: 1px solid #8d8d8d;
+    margin: 0;
+    padding: 18px 16px 10px;
+   ;
+  }
+  .chat-messages {
+    height: 410px;
+    overflow-y: scroll;
+  }
+  
+  .received-message-box {
+    display: inline-block;
+    padding: 0 0 0 10px;
+    vertical-align: top;
+    width: 92%;
+  }
+  .received-message p {
+    background-color:  #EE6C87;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 14px;
+    margin: 0;
+    padding: 5px 10px 5px 12px;
+    width: 100%;
+  }
+  .date {
+    color: #747474;
+    display: block;
+    font-size: 12px;
+    margin: 8px 0 0;
+  }
+  .received-message {
+    width: 55%;
+  }
+  .user-messages {
+    float: left;
+    padding: 30px 15px 0 25px;
+    width: 70%;
+  }
+  
+  .sent-message p {
+    background-color: #4b93ff;
+    border-radius: 10px;
+    font-size: 14px;
+    margin: 0;
+    color: #fff;
+    padding: 5px 10px 5px 12px;
+    width: 100%;
+  }
+  .outgoing-message {
+    overflow: hidden;
+    margin: 26px 0 26px;
+  }
+  .sent-message {
+    float: right;
+    width: 46%;
+  }
+  .send-message input {
+    background-color: #f8f8f8;
+    border: medium none;
+    color: #4c4c4c;
+    font-size: 15px;
+    min-height: 48px;
+    width: 100%;
+  }
+  
+  .send-message-box {
+    border-top: 1px solid #8d8d8d;
+    position: relative;
+  }
+  .send-btn {
+    background-color:#4b93ff;
+    border: medium none;
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    font-size: 17px;
+    height: 33px;
+    position: absolute;
+    right: 0;
+    top: 11px;
+    width: 33px;
+  }
+  
+  .message-history {
+    height: 400px;
+    overflow-y: auto;
+  }
+  

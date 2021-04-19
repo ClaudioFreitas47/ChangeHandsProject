@@ -1,0 +1,33 @@
+/*Css for Product*/
+.profile-pic{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+}
+.list-group-item {
+    background-color:#fcfafa;
+}
+.product-img{
+    width:100%;
+}
+.grey{
+    color:#7F7F7F;
+}
+
+.link a {
+    text-decoration: none;
+    color:#000;
+}
+.link a:hover {
+    color:#7F7F7F;
+}
+.btn-product {
+    background: #000000;
+    border: none;
+    font-size:20px;
+    padding: 10px;
+    border-radius: 3px;
+    width: 100%;
+    color: #fff;
+
+  }
