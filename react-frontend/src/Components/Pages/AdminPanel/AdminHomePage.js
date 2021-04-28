@@ -4,7 +4,7 @@ import AdminNavBar from "./Nav/AdminNavbar";
 import axios from "axios";
 import { apiRootUrl, apiRootFileUrl } from "./../../appConfig";
 import notification from "./../../Alerts"
-
+import swal from "sweetalert2"
 
 import {
 FaTrashAlt
@@ -21,13 +21,27 @@ export default class AdminHomePage extends Component {
     //handles the deletion of the user
     this.handleDeleteUser = this.handleDeleteUser.bind(this);
   }
-  //stores the user ID in a variable
+//handles deletion of user and prevents event from occuring
   handleDeleteUser = (user) => (e) => {
     e.preventDefault();
+
+    //stores user id in a variable
     const data = {
       id: user._id,
     };
 
+    swal.fire({
+      title: 'Are you sure?',  
+      text: 'Once deleted, you will not be able to recover this item!',  
+      icon: 'warning',  
+      showCancelButton: true,
+      showCloseButton: true,  
+      confirmButtonColor: '#3085d6',  
+      cancelButtonColor: '#d33',  
+      confirmButtonText: 'Delete'  
+    })
+    .then((result) => {
+      if (result.isConfirmed) { 
     //API post of user ID for deletion, requires admin auth
     axios.post(apiRootUrl + "/admin/users/deleteUser", data, {
       headers: {
@@ -45,6 +59,8 @@ export default class AdminHomePage extends Component {
       .catch((err) => {
           notification("error", "Error", err.response.data.error)
       });
+    }
+  })
   };
   //API Gets all the users to display within the table
   getAllUsers() {

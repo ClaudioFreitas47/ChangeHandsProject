@@ -3,9 +3,9 @@ import { Container, Row, Col, Table } from "react-bootstrap";
 import AdminNavBar from "./Nav/AdminNavbar";
 import axios from "axios";
 import { apiRootUrl } from "./../../appConfig";
-import notification from "./../../Alerts"
+import notification from "./../../Alerts";
 import { Link } from "react-router-dom";
-
+import swal from "sweetalert2"
 import {
   FaEdit,
   FaTrashAlt
@@ -21,19 +21,38 @@ export default class AdminAllBrands extends Component {
     };
     this.handleDeleteBrand = this.handleDeleteBrand.bind(this);
   }
+
   //handles the deletion of the brand
   handleDeleteBrand = (brand) => (e) => {
     e.preventDefault();
-
+    
+    //creates a variable of the brands ID
     const data = {
       id: brand._id,
     };
+
+    //sweetalert used to make a confirmation alert for deletion
+      swal.fire({
+      title: 'Are you sure?',  
+      text: 'Once deleted, you will not be able to recover this item!',  
+      icon: 'warning',  
+      showCancelButton: true,
+      showCloseButton: true,  
+      confirmButtonColor: '#3085d6',  
+      cancelButtonColor: '#d33',  
+      confirmButtonText: 'Delete'  
+    })
+    //if the result is confirm, it deletes the brand
+    .then((result) => {
+if (result.isConfirmed) { 
     //posts API to delete brand
+    
     axios.post(apiRootUrl + "/admin/brands/deleteBrand ", data, {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token_admin"),
       },
     })
+  
       .then(() => {
         this.getAllBrands();
           notification("success", "Success", "Brand Has Been Deleted");
@@ -42,7 +61,11 @@ export default class AdminAllBrands extends Component {
      
           notification("error", "Error", err.response.data.error)
       });
-  };
+    }
+    });
+  
+  }
+
   //API request to get all brands
   getAllBrands() {
     axios.get(apiRootUrl + "/admin/brands/getAllBrands", {

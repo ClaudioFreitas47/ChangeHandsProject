@@ -5,7 +5,7 @@ import axios from "axios";
 import { apiRootUrl, apiRootFileUrl } from "./../../appConfig";
 import notification from "./../../Alerts"
 import { Link } from "react-router-dom";
-
+import swal from "sweetalert2";
 import {
   FaEdit,
   FaTrashAlt
@@ -26,9 +26,25 @@ export default class AdminAllProducts extends Component {
   handleDeleteProduct = (product) => (e) => {
     e.preventDefault();
 
+//stores product id in data var
+
     const data = {
       id: product._id,
     };
+    //sweetalert used to make a confirmation alert for deletion
+    swal.fire({
+      title: 'Are you sure?',  
+      text: 'Once deleted, you will not be able to recover this item!',  
+      icon: 'warning',  
+      showCancelButton: true,
+      showCloseButton: true,  
+      confirmButtonColor: '#3085d6',  
+      cancelButtonColor: '#d33',  
+      confirmButtonText: 'Delete'  
+    })
+    .then((result) => {
+      if (result.isConfirmed) { 
+    //if the result is confirm, it deletes the brand
 
     //API post sends product ID to DB to be deleted, requires AUTH
     axios.post(apiRootUrl + "/admin/products/deleteProduct ", data, {
@@ -48,6 +64,8 @@ export default class AdminAllProducts extends Component {
       .catch((err) => {
         notification("error", "Error", err.response.data.error)
       });
+    }
+  })
   };
 
   //API get to display all products wihtin the DB

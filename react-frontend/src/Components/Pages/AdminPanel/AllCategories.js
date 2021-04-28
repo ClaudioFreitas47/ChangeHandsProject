@@ -5,7 +5,7 @@ import axios from "axios";
 import { apiRootUrl } from "../../appConfig";
 import notification from "./../../Alerts"
 import { Link } from "react-router-dom";
-
+import swal from "sweetalert2"
 import {
   FaEdit,
   FaTrashAlt
@@ -25,9 +25,24 @@ export default class AdminAllCategories extends Component {
   handleDeleteCategory = (category) => (e) => {
     e.preventDefault();
 
+    //stores category id in data var
     const data = {
       id: category._id,
     };
+//sweetalert used to make a confirmation alert for deletion
+swal.fire({
+  title: 'Are you sure?',  
+  text: 'Once deleted, you will not be able to recover this item!',  
+  icon: 'warning',  
+  showCancelButton: true,
+  showCloseButton: true,  
+  confirmButtonColor: '#3085d6',  
+  cancelButtonColor: '#d33',  
+  confirmButtonText: 'Delete'  
+})
+//if the result is confirm, it deletes the brand
+    .then((result) => {
+      if (result.isConfirmed) { 
 
     //posts category ID to DB
     axios.post(apiRootUrl + "/admin/categories/deleteCategory ", data, {
@@ -42,7 +57,10 @@ export default class AdminAllCategories extends Component {
       .catch((err) => {
         notification("error", "Error", err.response.data.error)
       });
+    }
+  })
   };
+
   //API gets all the categories
   getAllCategories() {
     axios.get(apiRootUrl + "/admin/categories/getAllCategories", {

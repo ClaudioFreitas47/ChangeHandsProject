@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { apiRootUrl, apiRootFileUrl, } from "./../../../appConfig";
 import notification from "./../../../Alerts"
 import "./../../../../Assets/Styles/Main.css";
-
+import swal from "sweetalert2"
 import {
   FaEdit,
   FaTrashAlt
@@ -30,6 +30,21 @@ export default class MyProducts extends Component {
       id: product._id,
     };
 
+    //sweetalert used to make a confirmation alert for deletion
+    swal.fire({
+      title: 'Are you sure?',  
+      text: 'Once deleted, you will not be able to recover this item!',  
+      icon: 'warning',  
+      showCancelButton: true,
+      showCloseButton: true,  
+      confirmButtonColor: '#3085d6',  
+      cancelButtonColor: '#d33',  
+      confirmButtonText: 'Delete'  
+    })
+    //if the result is confirm, it deletes the brand
+    .then((result) => {
+if (result.isConfirmed) { 
+
     //post request to send the ID for deletion
     axios.post(apiRootUrl + "/products/deleteProduct ", data, {
       headers: {
@@ -45,7 +60,10 @@ export default class MyProducts extends Component {
       .catch((err) => {
         notification("error", "Error", err.response.data.error)
       });
+    }
+  })
   };
+
   //API call to get all the users uploaded products, uses Auth token
   getAllProduct() {
     axios.get(apiRootUrl + "/products/getMyProducts", {
