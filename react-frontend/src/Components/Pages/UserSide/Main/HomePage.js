@@ -36,7 +36,7 @@ export default class MainHomePage extends Component {
     />
     <Carousel.Caption>
       <h1>Buy</h1>
-      <h3>Find exclusive items</h3>
+      <h2>Find exclusive items</h2>
     </Carousel.Caption>
   </Carousel.Item>
   <Carousel.Item>
@@ -48,7 +48,7 @@ export default class MainHomePage extends Component {
 
     <Carousel.Caption>
       <h1>Sell</h1>
-      <h3>The best place to sell old items</h3>
+      <h2>The best place to sell old items</h2>
     </Carousel.Caption>
   </Carousel.Item>
   <Carousel.Item>
@@ -60,7 +60,7 @@ export default class MainHomePage extends Component {
 
     <Carousel.Caption>
       <h1>Explore</h1>
-      <h3>Find new items and communicate with users in real time</h3>
+      <h2>Find new items and communicate with users in real time</h2>
     </Carousel.Caption>
   </Carousel.Item>
 </Carousel>
