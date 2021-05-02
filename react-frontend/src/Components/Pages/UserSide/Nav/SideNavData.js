@@ -6,6 +6,7 @@ import {
   FaStoreAlt,
   FaCog,
   FaHome,
+  FaExclamation,
 
 } from "react-icons/fa";
 
@@ -58,6 +59,12 @@ export const sideNavData = [
     title: "Account Settings",
     path: "/account-setting",
     icon: <FaCog />,
+    name: "nav-text",
+  },
+  {
+    title: "Report An Issue",
+    path: "/report",
+    icon: <FaExclamation />,
     name: "nav-text",
   },
 ];

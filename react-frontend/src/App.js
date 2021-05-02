@@ -15,6 +15,7 @@ import EditProduct from "./Components/Pages/UserSide/Main/EditProduct";
 import ProductDashboard from "./Components/Pages/UserSide/Main/ProductDashboard";
 import AddProduct from "./Components/Pages/UserSide/Main/AddProduct";
 import Profile from "./Components/Pages/UserSide/Main/Profile";
+import ReportForm from "./Components/Pages/UserSide/Main/ReportForm"
 
 // imports all user authentication
 import UserLogin from "./Components/Pages/Authentication/UserAuth/Login";
@@ -70,6 +71,7 @@ const App = () => {
           <Route exact path='/my-saved-products' component={MySavedProducts} />
           <Route exact path='/add-product' component={AddProduct} />
           <Route exact path='/edit-product/:id' component={EditProduct} />
+          <Route exact path='/report' component={ReportForm} />
           <Route exact path={["/profile/:username", "/my-profile/:username"]} component={Profile} />
           <Route exact path='/account-setting' component={UserAccountSettings} />
           <Route path={["/inbox/:id", "/inbox"]} component={UserChat} />

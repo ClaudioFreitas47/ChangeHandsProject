@@ -34,8 +34,9 @@ const Footer =() => {
                 <li className="footer-li">Admin</li>
                 </Link>
                 <li className="footer-li">|</li>
-
-                <li className="footer-li">Contact: 01534111</li>
+                <Link to="/report">
+                <li className="footer-li">Report An Issue</li>
+                </Link>
             </ul>
             </Container>
         </div>

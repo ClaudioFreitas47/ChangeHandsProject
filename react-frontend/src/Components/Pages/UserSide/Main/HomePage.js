@@ -80,12 +80,12 @@ export default class MainHomePage extends Component {
    <img className="narrative-img" src= {image4} alt="shaking hands"></img>
     </Col>
   </Row>
-  </Container>
+  
   <Row className="pt-5">
-  <Col className="mr-5" lg={4} md={5} xs={12}>
+  <Col className="mr-5" lg={6} md={5} xs={12}>
   <img className="narrative-img pb-5" src={image5} alt="records"></img>
   </Col>
-  <Col className="narrative" lg={6} md={5} xs={12}>
+  <Col className="narrative" lg={4} md={5} xs={12}>
   <h3 className="heading mb-5">Find what you need</h3>
   <p>The best second hand market available to find whatever you need. Clothes? Electronics? Jewellery? We have it all, come explore and sell those unwanted items you no longer need, or buy items you need! </p>
   <div>
@@ -93,7 +93,7 @@ export default class MainHomePage extends Component {
   </div>
     </Col>
   </Row>
- 
+  </Container>
 
 </Jumbotron>
 <div className="bottom"></div>
