@@ -15,8 +15,8 @@ export default class AdminAddCategory extends Component {
       categoryNameErrorMessage: "",
       categoryNameError: false,
     };
+    //handles the category properties
     this.handleCategoryName = this.handleCategoryName.bind(this);
-
     this.handleAddCategory = this.handleAddCategory.bind(this);
   }
 
@@ -46,7 +46,7 @@ export default class AdminAddCategory extends Component {
           Authorization: "Bearer " + localStorage.getItem("token_admin"),
         },
       })
-
+      //returns success message
         .then((res) => {
           console.log(res);
           notification("success", "Success", "Category Has Been Added");

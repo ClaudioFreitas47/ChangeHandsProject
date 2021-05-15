@@ -50,6 +50,7 @@ swal.fire({
         Authorization: "Bearer " + localStorage.getItem("token_admin"),
       },
     })
+    //returns all categories and success message
       .then((res) => {
         this.getAllCategories();
         notification("success", "Success", res.data.message);

@@ -153,6 +153,7 @@ if (result.isConfirmed) {
             </Col>
           </Row>
         </Container>
+        <div className="bottom"/>
       </>
     );
   }

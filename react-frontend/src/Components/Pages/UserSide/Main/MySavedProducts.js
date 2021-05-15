@@ -34,7 +34,7 @@ export default class MySavedProducts extends Component {
         notification("error", "Error", err.response.data.error)
       });
   }
-  //mounts component
+  //mounts component, executed after first render
   componentDidMount() {
     this.getSavedProducts();
   }

@@ -9,6 +9,7 @@ exports.createBrand = asyncHandler(async (req, res, next) => {
   const brand = await Brand.create({
     name,
   });
+  //returns success status and message
   return res.status(200).json({
     success: true,
     data: brand,
@@ -24,7 +25,7 @@ exports.getAllBrands = asyncHandler(async (req, res, next) => {
   });
 });
 
-//gets a single brand based on a query and returns a success messgae
+//gets a single brand based on a query and ID and returns a success messgae
 exports.getSingleBrand = asyncHandler(async (req, res, next) => {
   const brand = await Brand.findById(req.query.id);
   return res.status(200).json({
@@ -40,6 +41,8 @@ exports.updateBrand = asyncHandler(async (req, res, next) => {
   await Brand.findByIdAndUpdate(id, {
     name,
   });
+
+  //returns success status and message
   return res.status(200).json({
     success: true,
     message: "Brand Has Been Updated",
@@ -56,7 +59,7 @@ exports.deleteBrand = asyncHandler(async (req, res, next) => {
     brand: id,
   });
 
-  //returns message of removed brand
+  //returns success status and message of removed brand
   return res.status(200).json({
     success: true,
     message: "Brand Has Been Deleted",

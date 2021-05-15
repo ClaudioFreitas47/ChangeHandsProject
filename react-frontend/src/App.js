@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import "./Assets/Styles/App.css";
+//imports bootstrap css
 import "bootstrap/dist/css/bootstrap.min.css";
+//imports socket from app config
 import { socket } from "./Components/appConfig"
+//imports router from react router
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 //imports all user components/pages

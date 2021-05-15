@@ -15,7 +15,7 @@ Requirements:
 
 8.	Navigate to (http://localhost:3000/register) and create a new user account to begin using the application.
 
-9.	To use the admin panel an account will need to be created. For this download Postman (https://www.postman.com/downloads/) or any other API application and POST the credentials to http://localhost:5000/api/v1/admin/auth/login
+9.	If database is connected to "mongodb://localhost/changehands", the admin panel will require an account to be created) For this download Postman (https://www.postman.com/downloads/) or any other API application and POST the credentials to http://localhost:5000/api/v1/admin/auth/registerAdmin
 
 Credentials:
 {

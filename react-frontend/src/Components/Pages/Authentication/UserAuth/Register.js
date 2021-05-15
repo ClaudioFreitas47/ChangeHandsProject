@@ -44,31 +44,35 @@ export default class Login extends Component {
   handleRegister = (e) => {
     e.preventDefault();
     const { firstName, lastName, username, email, password } = this.state;
-    //all fields must be filled in
+    //firstname input validation
     if (firstName === "" || null) {
       this.setState({
         firstNameErrorMessage: "Please Enter A First Name",
         firstNameError: true,
       });
       return false;
+       //lastname input validation
     } else if (lastName === "" || null) {
       this.setState({
         lastNameErrorMessage: "Please Enter A Last Name",
         lastNameError: true,
       });
       return false;
+       //username input validation
     } else if (username === "" || null) {
       this.setState({
         usernameErrorMessage: "Please Enter A Username",
         usernameError: true,
       });
       return false;
+       //email input validation
     } else if (email === "" || null) {
       this.setState({
         emailErrorMessage: "Please Enter An Email",
         emailError: true,
       });
       return false;
+       //password input validation
     } else if (password === "" || null) {
       this.setState({
         passwordErrorMessage: "Please Enter A Password",

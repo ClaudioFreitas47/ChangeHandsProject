@@ -35,6 +35,7 @@ export default class EditProduct extends Component {
       ],
     };
 
+    //handles editing of products
     this.handleName = this.handleName.bind(this);
     this.handlePrice = this.handlePrice.bind(this);
     this.handleDescription = this.handleDescription.bind(this);
@@ -76,7 +77,7 @@ export default class EditProduct extends Component {
       price: e.target.value,
     });
   };
-
+//executed after first render
   componentDidMount() {
     //gets all the product details if the props match
     if (this.props.match.params.id) {
@@ -112,8 +113,6 @@ export default class EditProduct extends Component {
   //API request to get the single product using the ID 
   getProductDetails = (productId) => {
     
-
-
     axios.get(apiRootUrl + `/products/getSingleProduct?productId=${productId}`, {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -145,6 +144,7 @@ export default class EditProduct extends Component {
   //if statements used to present errors for incorrect input
   handleEditProduct = (e) => {
     e.preventDefault();
+    //input validation
     const { file, price, name, description } = this.state;
     if (price < 1 || name === "" || description === "") {
       

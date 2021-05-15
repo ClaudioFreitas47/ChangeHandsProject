@@ -14,9 +14,11 @@ const BrandSchema = new mongoose.Schema(
     },
   },
   {
+    //sets mongoose virtuals to true, used to access in code
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
   }
 );
 
+//exports brand model
 module.exports = mongoose.model("Brand", BrandSchema);

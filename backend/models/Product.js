@@ -10,6 +10,7 @@ const ProductSchema = new mongoose.Schema(
     description: {
       type: String,
       required: true,
+      //sets the max length of the description
       maxlength: [1000, "Max Description Length Is 1000 Characters"],
     },
     image: {
@@ -33,6 +34,7 @@ const ProductSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    //sets the createdby to the user ID
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
@@ -54,9 +56,11 @@ const ProductSchema = new mongoose.Schema(
     },
   },
   {
+        //sets mongoose virtuals to true, used to access in code
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
   }
 );
 
+//exports product module
 module.exports = mongoose.model("Product", ProductSchema);

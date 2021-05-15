@@ -1,5 +1,6 @@
 import React from "react";
 
+//imports Font Awesome icons
 import {
   FaFolderOpen,
   FaPlus,

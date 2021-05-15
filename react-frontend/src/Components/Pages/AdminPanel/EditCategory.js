@@ -29,6 +29,7 @@ export default class AdminEditCategory extends Component {
       categoryNameError: false,
     });
   };
+  //executes after first render
   componentDidMount() {
     if (this.props.match.params.id) {
       this.setState({
@@ -49,12 +50,14 @@ export default class AdminEditCategory extends Component {
         },
       }
     )
+    //sets state with name and ID
       .then((res) => {
         this.setState({
           name: res.data.data.name,
           id: res.data.data._id,
         });
       })
+      //catches any errors
       .catch((err) => {
         notification("error", "Error", err.response.data.error)
       });

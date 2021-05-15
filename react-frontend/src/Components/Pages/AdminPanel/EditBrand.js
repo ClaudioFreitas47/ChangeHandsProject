@@ -28,6 +28,7 @@ export default class AdminEditBrand extends Component {
       brandNameError: false,
     });
   };
+  //executed after first render
   componentDidMount() {
     if (this.props.match.params.id) {
       this.setState({
@@ -38,7 +39,7 @@ export default class AdminEditBrand extends Component {
     }
   }
 
-  //gets the brand data using the ID
+  //API gets the brand data using the ID
   getBrandDetails = (brandId) => {
     axios.get(apiRootUrl + `/admin/brands/getSingleBrand?id=${brandId}`, {
       headers: {

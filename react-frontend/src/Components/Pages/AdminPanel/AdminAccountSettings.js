@@ -24,14 +24,17 @@ export default class AdminAccountSettings extends Component {
 
     this.handlePassword = this.handlePassword.bind(this);
     this.handleNewPassword = this.handleNewPassword.bind(this);
+
     this.handleNewPasswordConfirm = this.handleNewPasswordConfirm.bind(this);
 
     this.handleUpdatePassword = this.handleUpdatePassword.bind(this);
   }
 //handles updating the password
   handleUpdatePassword = (e) => {
+    //prevents event from happening without user input 
     e.preventDefault();
     const { password, newPassword, newPasswordConfirm } = this.state;
+    //input validation
     if (password === "" || null) {
       this.setState({
         passwordError: true,
@@ -68,6 +71,7 @@ export default class AdminAccountSettings extends Component {
           Authorization: "Bearer " + localStorage.getItem("token_admin"),
         },
       })
+      //returns success message
         .then((res) => {
           notification("success", "Success", res.data.message);
         })

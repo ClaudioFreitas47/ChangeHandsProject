@@ -19,7 +19,6 @@ let chatSender = null;
 let chatReceiver = null;
 
 //use state requirments for user chat
-
 const UserChat = (props) => {
   const [myChats, setMyChats] = useState([]);
   const [, setUserChat] = useState([]);
@@ -43,9 +42,11 @@ const UserChat = (props) => {
     getSingleChat(chat.sender.id, chat.receiver.id);
   };
   const sendMessage = (e) => {
+    //prevents message from sending on render
     e.preventDefault();
-//
+
     if (message) {
+      //creates data variable with sender, receiver and message data
       const data = {
         sender: sender,
         receiver: receiver,
@@ -134,6 +135,7 @@ const UserChat = (props) => {
       //if the receiver and sender are correct the messages appear
       if (result.receiver === chatSender && result.sender === chatReceiver) {
         setMessages((messages) => [...messages, result]);
+        //uses css and jQuery to create scrollable history
         $(".message-history")
           .stop()
           .animate({ scrollTop: $(".message-history")[0].scrollHeight }, 1000);
@@ -141,6 +143,7 @@ const UserChat = (props) => {
       } else if (result.sender === chatSender) {
     
         setMessages((messages) => [...messages, result]);
+         //uses css and jQuery to create scrollable history
         $(".message-history")
           .stop()
           .animate({ scrollTop: $(".message-history")[0].scrollHeight }, 1000);

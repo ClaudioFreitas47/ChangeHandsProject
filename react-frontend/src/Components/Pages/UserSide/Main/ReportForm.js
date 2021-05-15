@@ -5,12 +5,12 @@ import emailjs from "emailjs-com"
 import "./../../../../Assets/Styles/Main.css"
 import notification from "./../../../Alerts"
 
- //use states for rating likes and product
 
 export default function ReportForm() {
 
     //function for sending the report form
   const sendReport = (e) => {
+    //prevents form from submitting when rendered
     e.preventDefault();
 
     //email js library used to send forms to emails.

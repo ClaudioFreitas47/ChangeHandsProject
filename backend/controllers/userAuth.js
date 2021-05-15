@@ -3,9 +3,8 @@ const User = require("../models/User");
 const Rating = require("../models/Rating");
 const Product = require("../models/Product");
 const asyncHandler = require("../middleware/asyncHandler");
-//const { COOKIE_EXPIRATION } = require("../configuration/jwt");
 
-//encrypts password
+//bcrypt encrypts password
 const bcrypt = require("bcryptjs");
 
 //registers the user
@@ -34,7 +33,6 @@ exports.login = asyncHandler(async (req, res, next) => {
     return next(new ErrorHandler("Please Provide a Valid Username and Password", 400));
   }
   //Finds the user and selects the newest password
-
   const user = await User.findOne({ username }).select("+password");
   //if the user cannot be authenticated an error is shown
   if (!user) {
@@ -58,9 +56,11 @@ const sendTokenResponse = (user, statusCode, res) => {
   //cookie expires in 24 hours from the creation data
   const options = {
     expires: new Date(Date.now() + process.env.COOKIE_EXPIRATION * 24 * 60 * 60 * 1000),
+     //http only prevents client-side scripts from accessing cookies
     httpOnly: true,
   };
 
+  //returns success message
   res.status(statusCode).cookie("token", token, options).json({
     success: true,
     token,
@@ -70,6 +70,7 @@ const sendTokenResponse = (user, statusCode, res) => {
 
 //gets the users account
 exports.getUser = asyncHandler(async (req, res, next) => {
+  //finds user by ID and returns success message
   try {
     const user = await User.findById(req.user.id);
     console.log("user", user);
@@ -77,6 +78,7 @@ exports.getUser = asyncHandler(async (req, res, next) => {
       success: true,
       data: user,
     });
+    //returns error in console log
   } catch (error) {
     console.log("error", error);
   }
@@ -92,9 +94,10 @@ exports.updateProfile = asyncHandler(async (req, res, next) => {
     birthDate,
     gender,
     aboutMe,
-
+//saves variables in the body
   } = req.body;
   const id = req.user.id;
+  //finds user by ID and updates new information
   await User.findByIdAndUpdate(id, {
     firstName,
     lastName,
@@ -104,6 +107,8 @@ exports.updateProfile = asyncHandler(async (req, res, next) => {
     gender,
     aboutMe,
   });
+
+  //returns success message
   res.status(200).json({
     success: true,
     messsage: "Profile Has Been Updated",
@@ -111,7 +116,6 @@ exports.updateProfile = asyncHandler(async (req, res, next) => {
 });
 
 //updates the users password with a new one
-
 exports.updatePassword = asyncHandler(async (req, res, next) => {
   const { password, newPassword } = req.body;
   const id = req.user.id;
@@ -121,7 +125,7 @@ exports.updatePassword = asyncHandler(async (req, res, next) => {
     return next(new ErrorHandler("Please Provide A Valid Password", 400));
   }
   
- 
+ //if password doesnt match username, returns error message
   const user = await User.findOne({ username }).select("+password");
   if (!user) {
     return next(new ErrorHandler("Incorrect Username Or Password", 401));
@@ -129,12 +133,14 @@ exports.updatePassword = asyncHandler(async (req, res, next) => {
 
   //check if password matches
   const matchPass = await user.matchPassword(password);
+  //returns error if pass doesnt match
   if (!matchPass) {
     return next(new ErrorHandler("Wrong Password Has Been Provided", 401));
   }
 
   //Generates a salt to encrypt the password 
   const SALT = await bcrypt.genSalt(10);
+  //encrypts password with SALT
   const updatedPassword = await bcrypt.hash(newPassword, SALT);
 
   //updates the user with the new password
@@ -146,6 +152,8 @@ exports.updatePassword = asyncHandler(async (req, res, next) => {
       password: updatedPassword,
     }
   );
+
+  //returns success status and message
   return res.status(200).json({
     success: true,
     message: "Password Has Been Updated",
@@ -154,7 +162,6 @@ exports.updatePassword = asyncHandler(async (req, res, next) => {
 
 //Gets the users profile details 
 exports.getProfileDetails = asyncHandler(async (req, res, next) => {
-
   const user = await User.findOne({ username: req.query.username });
 //returns error if user profile hasnt been found
   if (!user) {
@@ -163,7 +170,9 @@ exports.getProfileDetails = asyncHandler(async (req, res, next) => {
 
   //cheeks if the ratings exists
   let ratingExists = true;
+  //finds products by user ID
   const products = await Product.find({ createdBy: user._id });
+  //finds ratings by user id
   const ratingsAdded = await Rating.findOne({
     user: user._id,
     ratingFrom: req.user._id,

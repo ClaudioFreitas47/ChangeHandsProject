@@ -7,6 +7,7 @@ const SaveSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    //sets the reference as the product id
     product: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Product",
@@ -23,9 +24,11 @@ const SaveSchema = new mongoose.Schema(
     },
   },
   {
+        //sets mongoose virtuals to true, used to access in code
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
   }
 );
 
+//exports mongo module
 module.exports = mongoose.model("Save", SaveSchema);

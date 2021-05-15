@@ -24,6 +24,7 @@ const UserSchema = new mongoose.Schema(
       required: true,
       unique: true,
       match: [
+        //sets the email regex 
         /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
       "Email must contain '@' and a valid domain",
       ],
@@ -56,6 +57,7 @@ const UserSchema = new mongoose.Schema(
     password: {
       type: String,
       required: [true, "Please Add a password"],
+      //sets the password Regex
       match: [
         /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
         `Password must contain the following:
@@ -73,6 +75,7 @@ const UserSchema = new mongoose.Schema(
     },
   },
   {
+        //sets mongoose virtuals to true, used to access in code
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
   }
@@ -110,4 +113,6 @@ UserSchema.virtual("posts", {
   foreignField: "receiver",
   justOne: false,
 });
+
+//exports module
 module.exports = mongoose.model("User", UserSchema);

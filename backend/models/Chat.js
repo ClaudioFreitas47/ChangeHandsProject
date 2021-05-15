@@ -20,9 +20,12 @@ const ChatSchema = new mongoose.Schema({
     type: Date,
   },
   messages: [Message],
+
+  //sets the created at time to now
   createdAt: {
     type: Date,
     default: Date.now,
   },
 });
+//exports mongoose model 
 module.exports = mongoose.model("Chat", ChatSchema);

@@ -32,7 +32,7 @@ exports.sendMessage = asyncHandler(async (req, res, next) => {
     ],
   });
 
-  
+  //checks if the chats exist
   if (chatExists.length > 0) {
     const chattId = chatExists[0]._id;
 
@@ -69,6 +69,7 @@ exports.sendMessage = asyncHandler(async (req, res, next) => {
     });
     result = chat;
   }
+  //returns success status
   return res.status(200).json({
     success: true,
     data: result,
@@ -94,6 +95,7 @@ exports.getAllChats = asyncHandler(async (req, res, next) => {
       select: "firstName lastName username profile",
     });
 
+    //returns success status and data
   return res.status(200).json({
     success: true,
     data: chat,
@@ -105,11 +107,12 @@ exports.getAllChats = asyncHandler(async (req, res, next) => {
 exports.getUserChat = asyncHandler(async (req, res, next) => {
   const { sender, receiver } = req.query;
 
-
+//if theres no receiver or sender an error message appears
   if (!receiver || !sender) {
     return next(new ErrorHandler(`Receiver Or Sender Missing`, 400));
   }
 
+  //finds the chats
   try {
     const chat = await Chat.find({
       $or: [
@@ -131,10 +134,12 @@ exports.getUserChat = asyncHandler(async (req, res, next) => {
     chat[0].messages.forEach((element) => {
       element.text = decryption(element.text);
     });
+    //returns success status and message
     return res.status(200).json({
       success: true,
       data: chat,
     });
+    //returns any errors and console logs them
   } catch (error) {
     console.log("error", error);
   }

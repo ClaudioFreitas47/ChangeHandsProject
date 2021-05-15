@@ -6,4 +6,5 @@ const asyncHandler = fn => (req, res, next) => {
         .catch(next);
   };
   
+  //exports module for use in application
   module.exports = asyncHandler;

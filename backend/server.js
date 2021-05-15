@@ -17,7 +17,7 @@ const mongoDBConnection = require("./configuration/database");
 //connecting to db
 mongoDBConnection();
 
-//port number
+//Function for PORT number
 const Port = 5000;
 
 
@@ -31,6 +31,7 @@ io.on("connect", (socket) => {
 //returns callback error
     const { error, user } = addUser({ id: socket.id, name, profile });
 
+    //returns callback error
     if (error) return callback(error);
 
     callback();

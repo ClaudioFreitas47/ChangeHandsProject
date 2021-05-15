@@ -21,6 +21,7 @@ app.use(cors());
 //cookie parser
 app.use(cookie());
 
+//brings in routes and admin routes
 const auth = require("./routes/auth");
 const uploads = require("./routes/uploads");
 const products = require("./routes/product");
@@ -47,6 +48,8 @@ app.use("/api/v1/admin/brands", adminBrands);
 app.use("/api/v1/admin/users", adminUsers);
 app.use("/api/v1/admin/products", adminProducts);
 
+//uses errorHandler
 app.use(errorHandler);
 
+//exports app
 module.exports = app;

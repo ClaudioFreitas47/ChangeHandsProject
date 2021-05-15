@@ -14,11 +14,12 @@ const CategorySchema = new mongoose.Schema(
     },
   },
   {
+        //sets mongoose virtuals to true, used to access in code
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
   }
 );
-
+    //sets the category schema virtual to posts
 CategorySchema.virtual("posts", {
   ref: "Post",
   localField: "_id",

@@ -3,8 +3,9 @@ import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import './../../../../Assets/Styles/Footer.css';
 
-const Footer =() => {
 
+const Footer =() => {
+    //if token is present it displays the product dashboard route, otherwise login and register are displayed
     const token = localStorage.getItem("token")
 
     return (

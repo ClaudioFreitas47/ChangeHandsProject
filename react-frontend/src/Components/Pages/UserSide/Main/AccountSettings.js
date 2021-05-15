@@ -63,7 +63,7 @@ export default class UserAccountSettings extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  //mounts user details
+  //mounts user details, executed after first redner
   componentDidMount() {
     this.getUserDetails();
   }
@@ -98,6 +98,7 @@ export default class UserAccountSettings extends Component {
   handleProfilePictureUpdate = (e) => {
     e.preventDefault();
     const { file } = this.state;
+    //file input validation
     if (file === "" || null) {
 
       this.setState({
@@ -203,12 +204,14 @@ export default class UserAccountSettings extends Component {
   handleBasicAccountSetting = (e) => {
     e.preventDefault();
     const { firstName, lastName } = this.state;
+    //firstname input validation
     if (firstName === "") {
       this.setState({
         firstNameErrorMessage: "Please Enter First Name",
         firstNameError: true,
       });
       return false;
+      //lastname input validation
     } else if (lastName === "") {
       this.setState({
         lastNameErrorMessage: "Please Enter Last Name",

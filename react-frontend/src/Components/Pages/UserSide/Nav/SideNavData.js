@@ -1,4 +1,6 @@
 import React from "react";
+
+//imports Font Awesome icons
 import {
   FaEnvelopeOpenText,
   FaPlus,
@@ -10,6 +12,7 @@ import {
 
 } from "react-icons/fa";
 
+//exports the data for the side navigation bar
 export const sideNavData = [
   {
     title: "Home",

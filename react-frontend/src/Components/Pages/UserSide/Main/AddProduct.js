@@ -33,6 +33,7 @@ export default class AddProduct extends Component {
       ],
     };
 
+    //handles the upload of products
     this.handleName = this.handleName.bind(this);
     this.handlePrice = this.handlePrice.bind(this);
     this.handleDescription = this.handleDescription.bind(this);
@@ -67,6 +68,7 @@ export default class AddProduct extends Component {
       brand: e.target.value,
     });
   };
+  //executed after first render
   componentDidMount() {
     this.getAllCategories();
   }
@@ -143,8 +145,8 @@ export default class AddProduct extends Component {
                   Authorization: "Bearer " + localStorage.getItem("token"),
                 },
               })
-                .then((res) => {
-                  notification("success", "Success", res.data.message);
+                .then(() => {
+                  notification("success", "Success", "Item has been uploaded");
 
                   this.props.history.push("/my-products");
                 })

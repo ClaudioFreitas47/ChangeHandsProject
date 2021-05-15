@@ -21,7 +21,7 @@ export default class MainHomePage extends Component {
   render() {
     const token = localStorage.getItem("token");
     return (
-      //displays Visitor Nav if user isnt authenticated
+      //displays Visitor Nav if user isnt authenticated (no token)
       <>
         {token ? <UserNavbar /> : <VisitorNavbar />}
 

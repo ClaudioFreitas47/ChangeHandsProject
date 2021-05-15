@@ -1,11 +1,11 @@
 //empty array
 const users = [];
+
 //add id name and profile
 const addUser = ({ id, name, profile }) => {
   const user = { id, name, profile };
-
+  //push notification for users (socket.io)
   users.push(user);
-
   return { user };
 };
 

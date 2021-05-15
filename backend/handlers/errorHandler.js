@@ -5,5 +5,6 @@ class ErrorHandler extends Error {
       this.statusCode = statusCode;
     }
   }
+  //exports error handler for use in app
   module.exports = ErrorHandler;
   

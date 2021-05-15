@@ -16,7 +16,7 @@ const encryption = (text) => {
   //generates random bytes
   let aesiv = crypto.randomBytes(aesIV);
 
-  //uses aes 256 to encrypt
+  //uses aes 256 to encrypt 
   let codedText = crypto.createCipheriv(
     "aes-256-cbc",
     Buffer.from(key),
@@ -27,7 +27,7 @@ const encryption = (text) => {
   let isEncrypted = codedText.update(text);
 
   isEncrypted = Buffer.concat([isEncrypted, codedText.final()]);
-
+//returns string to hex
   return aesiv.toString("hex") + ":" + isEncrypted.toString("hex");
 }
 
@@ -46,6 +46,7 @@ const decryption = (text) => {
     Buffer.from(key),
     aesiv
   );
+  //updates the encrypted text with decryption
   let isDecrypted = convert.update(encryptedText);
 
   isDecrypted = Buffer.concat([isDecrypted, convert.final()]);

@@ -52,7 +52,7 @@ if (result.isConfirmed) {
         Authorization: "Bearer " + localStorage.getItem("token_admin"),
       },
     })
-  
+  //returns all brands and success message
       .then(() => {
         this.getAllBrands();
           notification("success", "Success", "Brand Has Been Deleted");

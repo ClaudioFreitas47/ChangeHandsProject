@@ -48,7 +48,7 @@ export default class AdminAddBrand extends Component {
           Authorization: "Bearer " + localStorage.getItem("token_admin"),
         },
       })
-
+//returns success message
         .then((res) => {
           console.log(res);
           notification("success", "Success", "Brand Has Been Added");

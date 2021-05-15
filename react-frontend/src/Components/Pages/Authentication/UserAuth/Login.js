@@ -27,10 +27,11 @@ export default class Login extends Component {
   }
   //handles the login, makes sure all fields are validated
   handleLogin = (e) => {
+    //prevents event from occuring on render
     e.preventDefault();
 
     const { username, password } = this.state;
-
+//username input validation
     if (username === "" || null) {
       this.setState({
         usernameErrorMessage: "Please Enter A Username",
@@ -38,7 +39,7 @@ export default class Login extends Component {
       });
 
       return false;
-
+//password input validation
     } else if (password === "" || null) {
 
       this.setState({

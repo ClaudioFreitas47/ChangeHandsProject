@@ -3,22 +3,27 @@ import { Link } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import { sideNavData } from "./SideNavData";
 import "./../../../../Assets/Styles/UserNavbar.css";
+//imports Font awesome icons
 import {
     FaBars,
     FaUser,
     FaTimes,
   } from "react-icons/fa";
+  //imports logout function from app config
 import {userLogout} from "../../../appConfig"
 
 
 const UserNavbar = () => {
+  //sets the state for the side nav (to open and close)
   const [sidenav, setSidenav] = useState(false);
   const showSidenav = () => setSidenav(!sidenav);
   
 
   useEffect(() => {
+    //if the user isnt authenticated, sends the uset to the login page
     if (localStorage.getItem("token") && localStorage.getItem("role")) {
       if (localStorage.getItem("role") === "user") {
+  
       } else {
         window.location = "/login";
       }

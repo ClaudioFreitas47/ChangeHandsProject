@@ -26,7 +26,7 @@ export default class AdminAllProducts extends Component {
   handleDeleteProduct = (product) => (e) => {
     e.preventDefault();
 
-//stores product id in data var
+//stores product id in data variable
 
     const data = {
       id: product._id,
@@ -88,6 +88,7 @@ export default class AdminAllProducts extends Component {
         notification("error", "Error", err.response.data.error)
       });
   }
+  //executed after first render 
   componentDidMount() {
     this.getAllProduct();
   }

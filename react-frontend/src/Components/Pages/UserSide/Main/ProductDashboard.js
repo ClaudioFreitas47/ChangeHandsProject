@@ -43,6 +43,7 @@ export default class ProductDashboard extends Component {
       ],
     };
 
+    //handles product dashboard 
     this.handleSearch = this.handleSearch.bind(this);
     this.handleSearchWord = this.handleSearchWord.bind(this);
     this.handleClear = this.handleClear.bind(this);
@@ -435,7 +436,7 @@ export default class ProductDashboard extends Component {
                       <strong>£ {product.price}</strong>
                       <Link to={"/product-details/" + product._id}>
                         <button
-                          className='btn-buy'
+                          className='btn-buy mb-4'
                           productId={product._id}
                         >
                           Buy Now

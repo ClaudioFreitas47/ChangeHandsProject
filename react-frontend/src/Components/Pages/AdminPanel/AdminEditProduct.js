@@ -77,7 +77,7 @@ export default class AdminEditProduct extends Component {
       price: e.target.value,
     });
   };
-
+//executed after first render
   componentDidMount() {
     if (this.props.match.params.id) {
       this.setState({
@@ -96,6 +96,7 @@ export default class AdminEditProduct extends Component {
         Authorization: "Bearer " + localStorage.getItem("token_admin"),
       },
     })
+    //returns success message
       .then((res) => {
         this.setState({
           categories: res.data.data,
@@ -188,7 +189,7 @@ export default class AdminEditProduct extends Component {
           notification("error", "Error", err.response.data.error)
         });
     } else {
-
+//API post to update admin product
       axios.post(apiRootUrl + "/admin/products/updateProduct", this.state, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token_admin"),

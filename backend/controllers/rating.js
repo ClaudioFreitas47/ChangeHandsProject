@@ -9,7 +9,7 @@ exports.addRating = asyncHandler(async (req, res, next) => {
   if (ratingFrom === user) {
     return next(new ErrorHandler("You Can Not Rate Yourself!", 400));
   }
-
+//finds the ratings
   const ratingExists = await Rating.findOne({
     user,
     ratingFrom,

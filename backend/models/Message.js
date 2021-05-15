@@ -20,9 +20,13 @@ const MessageSchema = new mongoose.Schema({
     type: Number,
     default: 1,
   },
+
+  //sets the created at date to now
   createdAt: {
     type: Date,
     default: Date.now,
   },
 });
+
+//exports the module
 module.exports = MessageSchema;

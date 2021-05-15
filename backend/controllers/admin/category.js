@@ -21,6 +21,8 @@ exports.createCategory = asyncHandler(async (req, res, next) => {
 exports.getAllCategories = asyncHandler(async (req, res, next) => {
   const categories = await Category.find({});
   const brands = await Brand.find({});
+
+  //returns success status
   return res.status(200).json({
     success: true,
     data: categories,
@@ -36,6 +38,8 @@ exports.updateCategory = asyncHandler(async (req, res, next) => {
   await Category.findByIdAndUpdate(id, {
     name,
   });
+
+  //returns success status and message
   return res.status(200).json({
     success: true,
     message: "Category Has Been Updated ",

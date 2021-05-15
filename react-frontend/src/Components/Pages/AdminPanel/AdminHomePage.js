@@ -29,7 +29,7 @@ export default class AdminHomePage extends Component {
     const data = {
       id: user._id,
     };
-
+//swal fire alert used to add delete confirmation
     swal.fire({
       title: 'Are you sure?',  
       text: 'Once deleted, you will not be able to recover this item!',  

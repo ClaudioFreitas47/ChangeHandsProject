@@ -9,7 +9,6 @@ import "./../../../../Assets/Styles/Main.css";
 export default class AdminLogin extends Component {
 
   //sets all the values to empty or false
-
   constructor(props) {
     super(props);
     this.state = {
@@ -31,6 +30,7 @@ export default class AdminLogin extends Component {
   handleLogin = (e) => {
     e.preventDefault();
     const { email, password } = this.state;
+//email input validation
     if (email === "" || null) {
       this.setState({
         emailErrorMessage: "Please Enter Email",
@@ -39,7 +39,7 @@ export default class AdminLogin extends Component {
       });
 
       return false;
-    
+    //password input validation
     } else if (password === "" || null) {
       this.setState({
         passwordErrorMessage: "Please Enter Password",
@@ -53,7 +53,7 @@ export default class AdminLogin extends Component {
 
       //returns admin token and role and pushes user to admin page
         .then((res) => {
-    
+    //sets admin role and token
           localStorage.setItem("token_admin", res.data.token);
           localStorage.setItem("role", "admin");
 

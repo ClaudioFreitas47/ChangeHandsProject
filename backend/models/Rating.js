@@ -25,9 +25,10 @@ const RatingSchema = new mongoose.Schema(
     },
   },
   {
+        //sets mongoose virtuals to true, used to access in code
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
   }
 );
-
+//exports rating module
 module.exports = mongoose.model("Rating", RatingSchema);

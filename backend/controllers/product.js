@@ -7,7 +7,7 @@ const Brand = require("./../models/Brand");
 const Save = require("./../models/Save");
 const Rating = require("./../models/Rating");
 
-//Creating product
+//Creating product and saves it in the body
 exports.createProduct = asyncHandler(async (req, res, next) => {
   const {
     name,
@@ -20,6 +20,7 @@ exports.createProduct = asyncHandler(async (req, res, next) => {
     condition,
   } = req.body;
 
+  //creates a function of who created the product by user ID
   const createdBy = req.user.id;
 
   //creates the product with all the specified conditions
@@ -55,6 +56,7 @@ exports.updateProduct = asyncHandler(async (req, res, next) => {
     brand,
     condition,
 
+    //populates the body with the product information
   } = req.body;
   const createdBy = req.user.id;
   const found = Product.findOne({
@@ -108,12 +110,14 @@ exports.deleteProduct = asyncHandler(async (req, res, next) => {
     )
   );
 }
+//finds product and removes it, catches any errors
   try {
     await found.remove();
   } catch (error) {
     console.log("error", error);
   }
 
+  //returns success status
   return res.status(200).json({
     success: true,
     data: {},
@@ -123,7 +127,9 @@ exports.deleteProduct = asyncHandler(async (req, res, next) => {
 //advanced search for products
 exports.getAdvanceSearchedProducts = asyncHandler(async (req, res, next) => {
   
+  
   const reqQuery = { ...req.query };
+  //used to sort price of tiems
   let price;
   const { sortPrice } = req.body;
   if (sortPrice == 1) {
@@ -134,6 +140,7 @@ exports.getAdvanceSearchedProducts = asyncHandler(async (req, res, next) => {
     price = null;
   }
 
+  //sorts products by price
   const products = await Product.find(reqQuery)
     .sort({ price: price })
     .populate({
@@ -143,6 +150,7 @@ exports.getAdvanceSearchedProducts = asyncHandler(async (req, res, next) => {
       path: "category",
     });
 
+    //returns success status
   return res.status(200).json({
     success: true,
     data: products,
@@ -162,6 +170,7 @@ exports.getAllProducts = asyncHandler(async (req, res, next) => {
       path: "category",
     });
 
+    //returns success status
   return res.status(200).json({
     success: true,
     data: products,
@@ -173,7 +182,6 @@ exports.getAllProducts = asyncHandler(async (req, res, next) => {
 exports.getSingleProduct = asyncHandler(async (req, res, next) => {
   const { productId } = req.query;
   console.log(productId);
-  console.log("single");
 
   //error if there is no product ID
   if (!productId) {
@@ -251,6 +259,8 @@ exports.searchProduct = asyncHandler(async (req, res, next) => {
     .populate({
       path: "category",
     });
+
+    //returns success status
   return res.status(200).json({
     success: true,
     data: products,
@@ -280,6 +290,7 @@ exports.likeProduct = asyncHandler(async (req, res, next) => {
     message = "Product Has Been Liked";
   }
 
+  //returns success status
   return res.status(200).json({
     success: true,
     message,
@@ -308,6 +319,7 @@ exports.saveProduct = asyncHandler(async (req, res, next) => {
     message = "Product Has Been Saved";
   }
 
+  //returns success status
   return res.status(200).json({
     success: true,
     message,
@@ -322,6 +334,8 @@ exports.mySavedProducts = asyncHandler(async (req, res, next) => {
   }).populate({
     path: "product",
   });
+
+  //returns success status
   return res.status(200).json({
     success: true,
     data: products,

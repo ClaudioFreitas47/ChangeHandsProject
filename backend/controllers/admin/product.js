@@ -24,6 +24,7 @@ exports.updateProduct = asyncHandler(async (req, res, next) => {
     image,
   });
   
+  //returns success status
   return res.status(200).json({
     success: true,
     data: product,
@@ -31,7 +32,7 @@ exports.updateProduct = asyncHandler(async (req, res, next) => {
 });
 
 
-//deletes the product
+//deletes the product by id
 
 exports.deleteProduct = asyncHandler(async (req, res, next) => {
   const { id } = req.body;
