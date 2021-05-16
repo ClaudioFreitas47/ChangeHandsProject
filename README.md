@@ -1,3 +1,11 @@
+Change Hands - An Item Exchange Platform
+
+Project Vision:
+
+The target audience for this project are for local people in Jersey, that require a platform where they are able to list and find second hand items within the island. The current problem is that there is not a suitable platform that exists, where people are easily able to sell their items and find second hand items online, which highlights the need for this project. The project ‘Change Hands’, is a web application platform, that provides users in Jersey with the ability to interact with each other and sell or buy items online, without needing to pay for postage or use external websites. The key reasons for this projects initiation, is because there is a scarcity of efficient and suitable online second hand web platforms available in Jersey, that are able to provide a secure way in which users can communicate, negotiate and exchange items effectively.
+
+User Guide:
+
 Requirements:
 1.	Download and install Node.JS (https://nodejs.org/en/download/)
 

@@ -45,7 +45,7 @@ const UserSchema = new mongoose.Schema(
       type: Date,
       default: null,
     },
-    //true for male and false for female
+    //Boolean, true for male, false for female
     gender: {
       type: Boolean,
       default: true,
