@@ -23,7 +23,9 @@ Requirements:
 
 8.	Navigate to (http://localhost:3000/register) and create a new user account to begin using the application.
 
-9.	If database is connected to "mongodb://localhost/changehands", the admin panel will require an account to be created) For this download Postman (https://www.postman.com/downloads/) or any other API application and POST the credentials to http://localhost:5000/api/v1/admin/auth/registerAdmin
+9. Accessing the admin panel. The database should be connected to the atlas mongoDB server. If it is, you will be able to login with the admin credentials found below in 10.
+
+10. Alternatively if the database is connected to "mongodb://localhost/changehands", the admin panel will require an account to be created) For this download Postman (https://www.postman.com/downloads/) or any other API application and POST the credentials to http://localhost:5000/api/v1/admin/auth/registerAdmin
 
 Credentials:
 {
